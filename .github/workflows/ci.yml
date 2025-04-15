@@ -39,7 +39,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Build the Docker image
-        run: docker build ./packages/markitdown-mcp/ --file Dockerfile --tag ghcr.io/${{ github.repository_owner }}/${{ github.event.repository.name }}-mcp:latest
+        run: (cd ./packages/markitdown-mcp/ && docker build . --file Dockerfile --tag ghcr.io/${{ github.repository_owner }}/${{ github.event.repository.name }}-mcp:latest)
 
       - name: Log in to GitHub Container Registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
